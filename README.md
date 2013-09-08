@@ -2,6 +2,8 @@ Name of application: papereviews
 Description: It is an online paper review management system
 Andrew Id: jjpatel
 
+HEROKU URL -> http://thawing-springs-5462.herokuapp.com/users/sign_in
+
 The two Models in this application are
 1. User
 2. Review (i.e. paper review)
