@@ -1,0 +1,12 @@
+<h4>Review Details</h4>
+<table style="width:100%">
+	<tr><td style="width:15%;"><b>Paper Name:</b></td><td class="tdRight"><%= @review.paper_title %></td></tr>
+	<tr><td><b>Paper Author:</b></td><td><%= @review.author %></td></tr>
+	<tr><td><b>Paper Source:</b></td><td><%= @review.paper_source %></td></tr>
+	<tr><td><b>Summary:</b></td><td><%= @review.summary %></td></tr>
+	<tr><td><b>Key Points:</b></td><td><%= @review.key_points %></td></tr>
+	<tr><td><b>Comments:</b></td><td><%= @review.comments %></td></tr>
+	<tr><td><b>Review Date:</b></td><td><%= @review.review_date %></td></tr>
+	<tr><td><b>Citation Info:</b></td><td><%= @review.citation_info %></td></tr>
+<tr><td><%= link_to 'Back to all reviews', reviews_path%></td></tr>
+</table>

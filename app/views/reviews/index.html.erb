@@ -9,7 +9,11 @@
 <td style="width:7%">Edit</td>
 <td style="width:7%">Delete</td>
 </tr>
-<% Review.all.each do |r| %>
+<% all_reviews = Review.all %>
+<% if all_reviews.empty? %>
+	<em> No reviews found </em>
+<% else %>
+  <% Review.all.each do |r| %>
 	<tr>
 		<td><%= r.id %></td>
 		<td><%= r.paper_title %></td>
@@ -19,8 +23,6 @@
 		<td><%= link_to "Edit", edit_review_path(r) %></td>
 		<td><%= link_to "Delete", r, :method => :delete, :confirm => 'Are you sure you want to delete?' %></td>
 	</tr>
-<%end%>
-<% if Review.all.empty? %>
-	<em> No reviews found </em>
+  <%end%>
 <% end %>
 </table>
