@@ -1,8 +1,9 @@
 Papereviews::Application.routes.draw do
   devise_for :users
-  resources :users
-  get "reviews/index"
-  get "reviews/new"
+  resources :reviews
+  match "/reviews_index", to: 'reviews#index', via: 'get'
+  match "/reviews_new", to: 'reviews#new', via: 'get'
+  
   root :to => "reviews#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
