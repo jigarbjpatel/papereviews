@@ -17,7 +17,7 @@
 	<tr><td class="tdLeft"><%= f.label :summary, "Summary*"%></td><td class="tdRight"><%= f.text_field :summary%></td></tr>
 	<tr><td class="tdLeft"><%= f.label :key_points,	 "Key Points"%></td><td class="tdRight"><%= f.text_field :key_points%></td></tr>
 	<tr><td class="tdLeft"><%= f.label :comments, "Comments/Questions"%></td><td class="tdRight"><%= f.text_field :comments%></td></tr>
-	<tr><td class="tdLeft"><%= f.label :review_date, "Review Date*"%></td><td class="tdRight"><%= f.text_field :review_date%></td></tr>
+	<tr><td class="tdLeft"><%= f.label :review_date, "Review Date* (yyyy-mm-dd)"%></td><td class="tdRight"><%= f.text_field :review_date%></td></tr>
 	<tr><td class="tdLeft"><%= f.label :citation_info, "Citation Info"%></td><td class="tdRight"><%= f.text_field :citation_info%></td></tr>
 	<tr><td class="tdLeft"><%= f.submit "Save Review" %></td><td></td></tr>	
 	<tr><td><%= link_to 'Back to all reviews', reviews_path%></td></tr>
