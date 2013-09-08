@@ -1,1 +1,14 @@
 <h1>Add new review</h1>
+<%= form_for(@review) do |f| %>
+<table>
+	<tr><td class="tdLeft"><%= f.label :paper_title, "Paper Title"%></td><td class="tdRight"><%= f.text_field :paper_title%></td></tr>
+	<tr><td class="tdLeft"><%= f.label :author, "Author"%></td><td class="tdRight"><%= f.text_field :author%></td></tr>
+	<tr><td class="tdLeft"><%= f.label :paper_source, "Paper Source"%></td><td class="tdRight"><%= f.text_field :paper_source%></td></tr>
+	<tr><td class="tdLeft"><%= f.label :summary, "Summary"%></td><td class="tdRight"><%= f.text_field :summary%></td></tr>
+	<tr><td class="tdLeft"><%= f.label :key_points,	 "Key Points"%></td><td class="tdRight"><%= f.text_field :key_points%></td></tr>
+	<tr><td class="tdLeft"><%= f.label :comments, "Comments/Questions"%></td><td class="tdRight"><%= f.text_field :comments%></td></tr>
+	<tr><td class="tdLeft"><%= f.label :review_date, "Review Date"%></td><td class="tdRight"><%= f.text_field :review_date%></td></tr>
+	<tr><td class="tdLeft"><%= f.label :citation_info, "Citation Info"%></td><td class="tdRight"><%= f.text_field :citation_info%></td></tr>
+	<tr><td class="tdLeft"><%= f.submit "Save Review", class: "btn btn-large btn-primary" %></td><td></td></tr>	
+</table>
+<%end%>

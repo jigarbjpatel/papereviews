@@ -11,21 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130908075743) do
+ActiveRecord::Schema.define(version: 20130908134958) do
 
   create_table "reviews", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "paper_title"
     t.string   "author"
     t.string   "paper_source"
-    t.datetime "review_date"
-    t.string   "citation_info"
+    t.string   "summary"
     t.string   "key_points"
     t.string   "comments"
+    t.string   "citation_info"
+    t.date     "review_date"
     t.string   "review_link"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "summary"
+    t.integer  "user_id"
   end
+
+  add_index "reviews", ["user_id", "review_date"], name: "index_reviews_on_user_id_and_review_date"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
