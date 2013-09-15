@@ -13,13 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require_tree .
 
-/*$(document).ready(function() {
-alert('hi');
   $('.delete_review').bind('ajax:success', function() {  
     $(this).closest('tr').fadeOut();  
   });
-});*/
-$(document).on('ajax:success', '.delete_review', function(e) {
-    $(e.currentTarget).closest('tr').fadeOut();
-})
+

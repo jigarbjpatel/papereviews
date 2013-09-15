@@ -13,4 +13,9 @@ class Review < ActiveRecord::Base
 	validates(:review_link, length: {maximum: 1000})
 	validates(:citation_info, length: {maximum: 1000})
 
+  def self.search(query)
+    # where(:title, query) -> This would return an exact match of the query
+    where("paper_title like ?", "%#{query}%") 
+  end
+
 end

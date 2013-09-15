@@ -1,28 +1,12 @@
+
 <h4>View Paper Reviews</h4>
-<table>
-<tr style="font-weight:bold">
-<td style="width:5%">#</td>
-<td style="width:30%">Paper Title</td>
-<td style="width:20%">Paper Author</td>
-<td style="width:10%">Review Date</td>
-<td style="width:7%">Show</td>
-<td style="width:7%">Edit</td>
-<td style="width:7%">Delete</td>
-</tr>
-<% all_reviews = Review.all %>
-<% if all_reviews.empty? %>
-	<em> No reviews found </em>
-<% else %>
-  <% Review.all.each do |r| %>
-	<tr>
-		<td><%= r.id %></td>
-		<td><%= r.paper_title %></td>
-		<td><%= r.author %></td>
-		<td><%= r.review_date %></td>
-		<td><%= link_to "Show", r %></td>
-		<td><%= link_to "Edit", edit_review_path(r) %></td>
-		<td><%= link_to "Delete", r, :method => :delete, :confirm => 'Are you sure you want to delete?' %></td>
-	</tr>
-  <%end%>
+ <%= form_tag(reviews_path, :method => "get", :remote => true, class: "navbar-form", id: "search-form") do %>
+    <div class="input-append">
+      <%= text_field_tag :search, params[:search],  placeholder: "Search Reviews based on Paper Title", class: "span6" %>
+      <button class="btn" type="submit"><i class="icon-search"></i></button>
+    </div>
+<div id="reviews_list">
+<%= render :partial => "reviews" %>
+</div>
 <% end %>
-</table>
+

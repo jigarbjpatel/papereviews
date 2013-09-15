@@ -1,0 +1,28 @@
+<table>
+<tr style="font-weight:bold">
+<td style="width:5%">#</td>
+<td style="width:30%">Paper Title</td>
+<td style="width:20%">Paper Author</td>
+<td style="width:10%">Review Date</td>
+<td style="width:7%">Show</td>
+<td style="width:7%">Edit</td>
+<td style="width:7%">Delete</td>
+</tr>
+<!--<% all_reviews = Review.all %>-->
+<% if @reviews.empty? %>
+	<em> No reviews found </em>
+<% else %>
+  <% @reviews.each do |r| %>
+	<tr>
+		<td><%= r.id %></td>
+		<td><%= r.paper_title %></td>
+		<td><%= r.author %></td>
+		<td><%= r.review_date %></td>
+		<td><%= link_to "Show", r %></td>
+		<td><%= link_to "Edit", edit_review_path(r) %></td>
+		<td><%= link_to "Delete", r, :method => :delete, :confirm => 'Are you sure you want to delete?', :class => 'delete_review', :remote => "true" %></td>
+	</tr>
+  <%end%>
+<% end %>
+</table>
+
