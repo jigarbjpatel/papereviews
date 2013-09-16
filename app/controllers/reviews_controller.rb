@@ -49,7 +49,6 @@ before_filter :authenticate_user!
 	  format.html do
             render 'new'
 	  end
-	#TODO: handle error for xml and json requests also
         end  
     end
   end
@@ -57,8 +56,6 @@ before_filter :authenticate_user!
   
   def edit
     @review = Review.find(params[:id])
-    #TODO: check for authorization
-    
   end
   
   def update
@@ -71,7 +68,6 @@ before_filter :authenticate_user!
           render 'edit'
         end
       end
-#TODO: handle error for xml and json requests also
       format.xml {render :xml => @review.to_xml(:include => {:user => {:only => :email}})}
       format.json  {render :json => @review.to_json(:include => {:user => {:only => :email}})}	
     end

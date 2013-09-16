@@ -1,16 +1,23 @@
 require 'spec_helper'
 
 describe Review do
-  before { @review = Review.new(paper_title: "Sample Paper 1", summary: "paper_summary", review_date: "2013-08-30") }
+  let(:user) { FactoryGirl.create(:user) }
+  before { @review = user.reviews.build(paper_title: "Sample Paper 1", summary: "paper_summary", review_date: "2013-08-30") }
 
   subject { @review }
 
   it { should respond_to(:paper_title) }
   it { should respond_to(:summary) }
   it { should respond_to(:review_date) }
-
+  it { should respond_to(:user_id) }
+  
   it { should be_valid }
   
+  describe "when user_id is not present" do
+    before { @review.user_id = nil }
+    it { should_not be_valid }
+  end
+
   describe "when paper_title is not present" do
     before { @review.paper_title = " " }
     it { should_not be_valid }

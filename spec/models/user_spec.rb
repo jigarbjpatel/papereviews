@@ -17,13 +17,18 @@ describe User do
     before { @user.password = " " }
     it { should_not be_valid }
   end
-
+  
+  describe "when password doesn't match confirmation" do
+    before { @user.password_confirmation = "mismatch" }
+    it { should_not be_valid }
+  end
+  
   describe "when email is too long" do
     before { @user.email = "a" * 256 }
     it { should_not be_valid }
   end
   describe "when password is too small" do
-    before { @user.email = "a" * 7 }
+    before { @user.password = "a" * 7 }
     it { should_not be_valid }
   end
   describe "when email format is not valid" do
@@ -54,5 +59,7 @@ describe User do
 
     it { should_not be_valid }
   end
+
+  
 
 end

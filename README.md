@@ -9,17 +9,14 @@ The two Models in this application are
 1. User
 2. Review (i.e. paper review)
 
-Relationship - user has may reviews and a review belongs to one user
+Relationship - user has many reviews and a review belongs to one user
 
-Features completed in this iteration
-1. User Model and Login, logout, sign up functions (all using devise gem)
-2. Review Model and associated CRUD operations (index, new, edit, delete, show) with basic views and validations
+Features working
+1. User sign in, sign out, sign up
+2. Review listing, creation, deletion (using ajax), edit and view
+3. Search review (using ajax)
+4. Review as REST API - /reviews.xml and /reviews.json
 
-Planned for next week release
-1. Ajax operation - search using paper title and author, pagination on view page (and sorting if time permits)
-2. Allowing users to add links to paper and paper reviews
-3. Adding date validation and using proper date input controls
-4. Allowing users to upload files (paper and review)
-5. If possible, allowing users to use rich text editor for entering comments
-6. Refactor esp. formatting of code
-
+Test cases
+1. Not all code is covered but there are total 55 test cases across both models and requests. 
+2. Used the concept of RSpec, Capybara, FactoryGirl and support specs. 

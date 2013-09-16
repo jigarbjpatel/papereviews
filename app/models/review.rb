@@ -2,7 +2,7 @@ class Review < ActiveRecord::Base
 
   belongs_to :user
   default_scope -> { order('review_date DESC') }
-
+	validates(:user_id, presence: true)
 	validates(:paper_title, presence: true, length: {maximum: 255})
 	validates(:summary, presence: true, length: {maximum: 255})
 	validates(:review_date, presence: true,  length: {maximum: 10})
