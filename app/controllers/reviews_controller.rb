@@ -22,13 +22,13 @@ before_filter :authenticate_user!
   def show
     @review = Review.find(params[:id])
     if @review.user_id == current_user.id    
-	    respond_to do |format|
-	      format.html
-	      format.xml {render :xml => @review.to_xml(:include => {:user => {:only => :email}})}
-	      format.json  {render :json => @review.to_json(:include => {:user => {:only => :email}})}
-	    end
+      respond_to do |format|
+	format.html
+	format.xml {render :xml => @review.to_xml(:include => {:user => {:only => :email}})}
+	format.json  {render :json => @review.to_json(:include => {:user => {:only => :email}})}
+      end
     else
-        @review = nil
+      @review = nil
     end
   end
 
@@ -42,18 +42,18 @@ before_filter :authenticate_user!
     #@review = current_user.reviews.build(review_params)
     
     respond_to do |format|     
-        if @review.save
-	 format.html do     
+      if @review.save
+	format.html do     
 	     # flash[:success] = "Review created!"
-          redirect_to @review
-	 end
-          format.xml {render :xml => @review.to_xml(:include => {:user => {:only => :email}})}
-          format.json  {render :json => @review.to_json(:include => {:user => {:only => :email}})}	
-        else
-	  format.html do
-            render 'new'
-	  end
-        end  
+        redirect_to @review
+	end
+        format.xml {render :xml => @review.to_xml(:include => {:user => {:only => :email}})}
+        format.json  {render :json => @review.to_json(:include => {:user => {:only => :email}})}	
+      else
+	format.html do
+          render 'new'
+	end
+      end  
     end
   end
     
@@ -68,34 +68,34 @@ before_filter :authenticate_user!
   def update
     @review = Review.find(params[:id])
     if @review.user_id == current_user.id 
-    respond_to do |format|
-      format.html do
-	if @review.update(review_params)
-	  redirect_to @review
-	else
-	  render 'edit'
-	end
+      respond_to do |format|
+        format.html do
+	  if @review.update(review_params)
+	    redirect_to @review
+	  else
+	    render 'edit'
+	  end
+        end
+        format.xml {render :xml => @review.to_xml(:include => {:user => {:only => :email}})}
+        format.json  {render :json => @review.to_json(:include => {:user => {:only => :email}})}	
       end
-      format.xml {render :xml => @review.to_xml(:include => {:user => {:only => :email}})}
-      format.json  {render :json => @review.to_json(:include => {:user => {:only => :email}})}	
-    end
     end
   end
 
   def destroy
     @review = Review.find(params[:id])
     if @review.user_id == current_user.id     
-    respond_to do |format|        
-      if @review.destroy        
-        format.json { head :no_content, status: :ok }
-        format.xml { head :no_content, status: :ok }
-      else
-        format.json { render json: @review.errors, status: :unprocessable_entity }
-        format.xml { render xml: @review.errors, status: :unprocessable_entity }
-      end 
-        format.html {redirect_to(root_url)}
-	format.js {render :nothing=>true}
-    end
+      respond_to do |format|        
+        if @review.destroy        
+          format.json { head :no_content, status: :ok }
+          format.xml { head :no_content, status: :ok }
+        else
+          format.json { render json: @review.errors, status: :unprocessable_entity }
+          format.xml { render xml: @review.errors, status: :unprocessable_entity }
+        end 
+          format.html {redirect_to(root_url)}
+	  format.js {render :nothing=>true}
+      end
     end
   end
 
