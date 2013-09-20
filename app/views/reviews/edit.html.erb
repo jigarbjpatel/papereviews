@@ -1,4 +1,5 @@
 <h4>Edit review</h4>
+<% if @review != nil %>
 <%= form_for :review, url: review_path(@review),  method: :patch  do |f| %>
 <% if @review.errors.any? %>
   <div id="error_explanation">
@@ -23,4 +24,5 @@
 <tr><td><%= link_to 'Back to all reviews', reviews_path%></td></tr>
 </table>
 
+<%end%>
 <%end%>

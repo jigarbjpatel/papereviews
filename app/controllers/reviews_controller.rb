@@ -3,9 +3,9 @@ before_filter :authenticate_user!
 
   def index
     if params[:search]
-      @reviews = Review.search(params[:search]).order("review_date DESC")
+      @reviews = Review.search(params[:search],current_user).order("review_date DESC")
     else
-      @reviews = Review.order("review_date DESC")
+      @reviews = Review.search('',current_user).order("review_date DESC")
     end  
     respond_to do |format|            
       format.html 
@@ -21,10 +21,14 @@ before_filter :authenticate_user!
 
   def show
     @review = Review.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.xml {render :xml => @review.to_xml(:include => {:user => {:only => :email}})}
-      format.json  {render :json => @review.to_json(:include => {:user => {:only => :email}})}
+    if @review.user_id == current_user.id    
+	    respond_to do |format|
+	      format.html
+	      format.xml {render :xml => @review.to_xml(:include => {:user => {:only => :email}})}
+	      format.json  {render :json => @review.to_json(:include => {:user => {:only => :email}})}
+	    end
+    else
+        @review = nil
     end
   end
 
@@ -56,25 +60,31 @@ before_filter :authenticate_user!
   
   def edit
     @review = Review.find(params[:id])
+    if @review.user_id != current_user.id    
+	@review = nil
+    end
   end
   
   def update
     @review = Review.find(params[:id])
+    if @review.user_id == current_user.id 
     respond_to do |format|
       format.html do
-        if @review.update(review_params)
-          redirect_to @review
-        else
-          render 'edit'
-        end
+	if @review.update(review_params)
+	  redirect_to @review
+	else
+	  render 'edit'
+	end
       end
       format.xml {render :xml => @review.to_xml(:include => {:user => {:only => :email}})}
       format.json  {render :json => @review.to_json(:include => {:user => {:only => :email}})}	
+    end
     end
   end
 
   def destroy
     @review = Review.find(params[:id])
+    if @review.user_id == current_user.id     
     respond_to do |format|        
       if @review.destroy        
         format.json { head :no_content, status: :ok }
@@ -85,6 +95,7 @@ before_filter :authenticate_user!
       end 
         format.html {redirect_to(root_url)}
 	format.js {render :nothing=>true}
+    end
     end
   end
 
