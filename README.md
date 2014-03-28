@@ -1,9 +1,8 @@
 Name of application: papereviews
+
 Description: It is an online paper review management system
-Andrew Id: jjpatel
 
 HEROKU URL for the project -> http://thawing-springs-5462.herokuapp.com/users/sign_in
-GIT HUB URL for project -> https://github.com/jigarbjpatel/papereviews.git
 
 The two Models in this application are
 1. User
